@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/wallets")
 @RequiredArgsConstructor
 public class WalletController {
-    private WalletService walletService;
+    private final WalletService walletService;
 
     @PostMapping
     public ResponseEntity<String> performOperation(@RequestParam @Valid WalletOperationRequest walletOperationRequest) {
