@@ -30,7 +30,12 @@ public class WalletController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Wallet>> getBalance() {
+    public ResponseEntity<List<Wallet>> getAllWallets() {
         return ResponseEntity.ok(walletService.getAll());
+    }
+
+    @GetMapping("/create")
+    public ResponseEntity<UUID> createWallet() {
+        return ResponseEntity.ok(walletService.createWallet());
     }
 }
