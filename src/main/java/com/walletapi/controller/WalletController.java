@@ -19,7 +19,7 @@ public class WalletController {
     private final WalletService walletService;
 
     @PostMapping
-    public ResponseEntity<String> performOperation(@RequestParam @Valid WalletOperationRequest walletOperationRequest) {
+    public ResponseEntity<String> performOperation(@RequestBody @Valid WalletOperationRequest walletOperationRequest) {
         walletService.processOperation(walletOperationRequest);
         return ResponseEntity.ok("Operation successful");
     }

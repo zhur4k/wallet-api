@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public record WalletOperationRequest (
-        @NotNull UUID walletId,
+        @NotNull UUID valletId,
         @NotNull OperationType operationType,
         @DecimalMin(value = "0.01", message = "Amount must be greater than zero") BigDecimal amount
 ){

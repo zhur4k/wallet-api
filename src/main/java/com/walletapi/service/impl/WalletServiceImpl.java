@@ -36,18 +36,18 @@ public class WalletServiceImpl implements WalletService {
 
         while (!success) {
             try {
-                Wallet wallet = walletRepository.findById(operationRequest.walletId())
-                        .orElseThrow(() -> new WalletNotFoundException(operationRequest.walletId()));
+                Wallet wallet = walletRepository.findById(operationRequest.valletId())
+                        .orElseThrow(() -> new WalletNotFoundException(operationRequest.valletId()));
 
                 if (operationRequest.operationType() == OperationType.WITHDRAW) {
                     if (wallet.getBalance().compareTo(operationRequest.amount()) < 0) {
                         throw new IllegalArgumentException("Not enough funds");
                     }
                     wallet.setBalance(wallet.getBalance().subtract(operationRequest.amount()));
-                    log.info("Withdrawn {} from wallet with ID {}", operationRequest.amount(), operationRequest.walletId());
+                    log.info("Withdrawn {} from wallet with ID {}", operationRequest.amount(), operationRequest.valletId());
                 } else {
                     wallet.setBalance(wallet.getBalance().add(operationRequest.amount()));
-                    log.info("Deposited {} to wallet with ID {}", operationRequest.amount(), operationRequest.walletId());
+                    log.info("Deposited {} to wallet with ID {}", operationRequest.amount(), operationRequest.valletId());
                 }
 
                 walletRepository.save(wallet);
