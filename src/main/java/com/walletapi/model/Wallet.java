@@ -3,6 +3,7 @@ package com.walletapi.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,9 @@ import java.util.UUID;
 public class Wallet {
     @Id
     private UUID id;
+
     private BigDecimal balance;
+
+    @Version
+    private Long version;
 }

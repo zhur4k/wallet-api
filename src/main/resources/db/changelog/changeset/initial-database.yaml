@@ -4,7 +4,7 @@ databaseChangeLog:
       author: Kanstantin
       changes:
         - createTable:
-            tableName: wallet
+            tableName: wallets
             columns:
               - column:
                   name: id
@@ -15,4 +15,8 @@ databaseChangeLog:
               - column:
                   name: balance
                   type: numeric(19, 2)
-                  defaultValueNumeric: 0.00
+              - column:
+                  name: version
+                  type: BIGINT
+                  constraints:
+                    nullable: false
