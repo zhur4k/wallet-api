@@ -1,6 +1,7 @@
 package com.walletapi.service.impl;
 
 import com.walletapi.dto.WalletOperationRequest;
+import com.walletapi.exception.WalletNotFoundException;
 import com.walletapi.model.OperationType;
 import com.walletapi.model.Wallet;
 import com.walletapi.repository.WalletRepository;
@@ -24,7 +25,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public BigDecimal getBalance(UUID id) {
         return walletRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Wallet not found"))
+                .orElseThrow(() -> new WalletNotFoundException(id))
                 .getBalance();
     }
 
@@ -36,7 +37,7 @@ public class WalletServiceImpl implements WalletService {
         while (!success) {
             try {
                 Wallet wallet = walletRepository.findById(operationRequest.walletId())
-                        .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
+                        .orElseThrow(() -> new WalletNotFoundException(operationRequest.walletId()));
 
                 if (operationRequest.operationType() == OperationType.WITHDRAW) {
                     if (wallet.getBalance().compareTo(operationRequest.amount()) < 0) {
