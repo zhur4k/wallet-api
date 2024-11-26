@@ -45,7 +45,7 @@ class WalletControllerTest {
 
         doNothing().when(walletService).processOperation(ArgumentMatchers.any(WalletOperationRequest.class));
 
-        mockMvc.perform(post("/api/v1/wallets")
+        mockMvc.perform(post("/api/v1/wallet")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())

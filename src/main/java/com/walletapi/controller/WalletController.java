@@ -13,28 +13,28 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/wallets")
+@RequestMapping("api/v1")
 @RequiredArgsConstructor
 public class WalletController {
     private final WalletService walletService;
 
-    @PostMapping
+    @PostMapping("/wallet")
     public ResponseEntity<String> performOperation(@RequestBody @Valid WalletOperationRequest walletOperationRequest) {
         walletService.processOperation(walletOperationRequest);
         return ResponseEntity.ok("Operation successful");
     }
 
-    @GetMapping("/{walletId}")
+    @GetMapping("/wallets/{walletId}")
     public ResponseEntity<BigDecimal> getBalance(@PathVariable UUID walletId) {
         return ResponseEntity.ok(walletService.getBalance(walletId));
     }
 
-    @GetMapping("/all")
+    @GetMapping("/wallets/all")
     public ResponseEntity<List<Wallet>> getAllWallets() {
         return ResponseEntity.ok(walletService.getAll());
     }
 
-    @GetMapping("/create")
+    @GetMapping("/wallets/create")
     public ResponseEntity<UUID> createWallet() {
         return ResponseEntity.ok(walletService.createWallet());
     }
