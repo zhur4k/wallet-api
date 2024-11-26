@@ -1,5 +1,6 @@
 package com.walletapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -24,6 +25,7 @@ public class Wallet {
 
     private BigDecimal balance;
 
+    @JsonIgnore
     @Version
     private Long version;
 }
